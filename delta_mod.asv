@@ -9,7 +9,7 @@ message = Am* sin(2*pi*fm .* t);
 plot(message);
 hold on;
 
-demodulated_signal = 0;
+y = 0;
 strc = 0;
 del = 0.1;
 
@@ -23,11 +23,30 @@ for i=1:length(message)-1
         d=0;
         strc(i+1)=strc(i)-del;
     end
-    demodulated_signal=[demodulated_signal d]
+    y=[y d]
 end
 
 stairs(strc)
 hold off
-MSE = 
-    
-        
+MSE = sum((x-strc .^ 2))/length(x);
+disp(['Mean Squared Error: '],MSE);
+
+y_demod = 0;
+strc_demod = 0;
+
+% demodulation
+for i=2:length(y)-1
+    if y(i) == 1
+        strc_demod(i+1) = strc(i)+del;
+    else
+        d=0;
+        strc_demod(i+1) = strc(i)-del;
+    end
+    y_demod = [y_demod strc_demod];
+end
+
+% apply lowpass filter
+order = 20;
+lowpass_filter = fir1(order, fs/(fm/2), 'low');
+filtered_signal = 
+
