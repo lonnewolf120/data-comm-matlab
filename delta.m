@@ -4,8 +4,8 @@ close all;
 
 % Parameters
 fs = 10000;         % Sampling frequency
-fm = 1000;          % Message signal frequency
-t = 0:1/fs:0.1;     % Time vector (0.1 seconds duration)
+fm = 100;          % Message signal frequency
+t = 0:1/fs:1000/fs;     % Time vector (0.1 seconds duration)
 Am = 5;             % Amplitude of the message signal
 del = 0.1;          % Step size for delta modulation
 
