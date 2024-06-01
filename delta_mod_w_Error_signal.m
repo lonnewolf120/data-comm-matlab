@@ -77,13 +77,13 @@ the original message and the filtered signal (which should be the demodulated si
 %}
 
 % Plot results
-figure;
+%figure;
 subplot(4,1,1);
 plot(t, message);
 title('Message');
 
 subplot(4,1,2);
-stairs(t, y(1:length(t)));
+stairs(t, strc);
 title('Modulated signal');
 
 subplot(4,1,3);
