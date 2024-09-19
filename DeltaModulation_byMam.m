@@ -46,12 +46,12 @@ xr_demod = 0;
 
 
 for i = 2:length(y)
-if y(i) == 1
-xr_demod = xr_demod + level;
-else
-xr_demod = xr_demod - level;
-end
-y_demod = [y_demod xr_demod];
+    if y(i) == 1
+        xr_demod = xr_demod + level;
+    else
+        xr_demod = xr_demod - level;
+    end
+    y_demod = [y_demod xr_demod];
 end
 
 plot(t, y_demod);

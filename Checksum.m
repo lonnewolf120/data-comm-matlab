@@ -2,7 +2,7 @@ clc;
 clear;
 
 % Example data
-data = [7 11 12 0 6];
+data = [7 11 12 0 6 5 4 4 1 5];
 
 % Calculate the checksum
 cs = sum(data);

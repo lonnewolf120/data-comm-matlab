@@ -1,0 +1,54 @@
+clc;
+clear all;
+
+fs = 1000;
+Am = 10;
+fm = 100;
+t = 0: 1000 : 1;
+msg = Am * sin(2*pi*fm .* t);
+
+Ac = 10;
+fc = 100;
+carr = Ac * sin(2*pi*fc .* t);
+
+mod_s = (1+msg) .* carr;
+rec_s = abs(mod_s);
+
+%lowpass filter
+cutoff_freq = 200;
+order = 4;
+nyquist_freq = fs/2;
+
+[b,a] = butter(order, cutoff_freq/nyquist_freq, 'low');
+filtered_signal = filter(b,a, rec_s);
+
+
+
+subplot(5,1,1)
+plot(t,msg)
+xlabel('Message Signal');
+ylabel('Time');
+grid on
+subplot(5,1,2)
+plot(t,carr)
+xlabel('Carrier Signal');
+ylabel('Time');
+grid on
+subplot(5,1,3)
+plot(t,mod_s)
+xlabel('Modulated Signal');
+ylabel('Time');
+grid on
+subplot(5,1,4)
+plot(t,rec_s)
+xlabel('Rectified Signal');
+ylabel('Time');
+grid on
+subplot(5,1,5)
+plot(t,filtered_signal)
+xlabel('Demodulated Signal');
+ylabel('Time');
+grid on
+
+
+
