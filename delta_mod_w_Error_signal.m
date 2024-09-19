@@ -24,7 +24,7 @@ fs = 10000;
 fm = 1000;
 t = 0:2*pi/100:2*pi;
 Am = 5;
-message = Am* sin(2*pi*fm .* t);
+message = Am* sin(2*pi*fm * t);
 %plot(message);
 %hold on;
 
@@ -45,7 +45,7 @@ for i=1:length(message)-1
     y=[y d];
 end
 
-stairs(t,strc);
+stairs(t,strc);  % display the staircase approx. figure
 hold off
 MSE = sum((message-strc) .^ 2)/length(message);
 disp(['Mean Squared Error: ',num2str(MSE)]);
@@ -54,12 +54,11 @@ y_demod = [0];
 strc_demod = [0];
 
 % demodulation
-for i=2:length(y)-1
+for i=2:length(y)
     if y(i) == 1
-        strc_demod(i+1) = strc(i)+del;
+        strc_demod = strc_demod+del;
     else
-        d=0;
-        strc_demod(i+1) = strc(i)-del;
+        strc_demod = strc_demod-del;
     end
     y_demod = [y_demod strc_demod];
 end
